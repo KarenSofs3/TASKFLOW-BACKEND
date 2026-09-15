@@ -1,16 +1,20 @@
 {
   "name": "taskflow",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend de TASKFLOW - API REST, Worker, Redis y MongoDB",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "worker": "node worker/worker.js",
+    "worker:dev": "nodemon worker/worker.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KarenSofs3/TASKFLOW.git"
   },
-  "keywords": [],
+  "keywords": ["taskflow", "express", "mongodb", "redis", "worker"],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -18,7 +22,16 @@
   },
   "homepage": "https://github.com/KarenSofs3/TASKFLOW#readme",
   "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "node": "^26.8.2"
+    "ioredis": "^6.0.0",
+    "mongoose": "^9.10.1",
+    "node": "^26.8.2",
+    "redis": "^6.2.1",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
