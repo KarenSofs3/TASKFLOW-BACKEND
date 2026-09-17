@@ -1,4 +1,7 @@
-node_modules/ 
+node_modules/
+dist/
+dist-ssr/
+*.local
 .env
-ARQUITECTURA_TASKFLOW.md
-"Taller TaskFlow (2).docx" 
+.env.*.local
+.DS_Store
