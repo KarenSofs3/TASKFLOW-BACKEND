@@ -7,7 +7,13 @@ const COLA_KEY = 'taskflow:cola:solicitudes';
 const redisBloqueante = crearConexionRedis();
 
 export const encolarSolicitud = async (solicitudId) => {
-    await redis.lpush(COLA_KEY, solicitudId.toString());
+    try {
+        await redis.lpush(COLA_KEY, solicitudId.toString());
+        return true;
+    } catch (error) {
+        console.error('❌ No se pudo encolar:', error.message);
+        return false;
+    }
 };
 
 export const obtenerSolicitudDeCola = async () => {

@@ -6,7 +6,11 @@ import {
     obtenerEstadisticas,
 } from '../services/solicitud.service.js';
 import { publicarEvento } from '../socket/eventBus.js';
+import { NotFoundError } from '../utils/errors.js';
 
+// ============================================
+// POST /api/solicitudes
+// ============================================
 export const postSolicitud = async (req, res, next) => {
     try {
         const solicitud = await crearSolicitud(req.body);
@@ -22,6 +26,9 @@ export const postSolicitud = async (req, res, next) => {
     }
 };
 
+// ============================================
+// GET /api/solicitudes
+// ============================================
 export const getSolicitudes = async (req, res, next) => {
     try {
         const resultado = await obtenerSolicitudes();
@@ -31,20 +38,24 @@ export const getSolicitudes = async (req, res, next) => {
     }
 };
 
-import { NotFoundError } from '../utils/errors.js';
-
+// ============================================
+// GET /api/solicitudes/:id
+// ============================================
 export const getSolicitudById = async (req, res, next) => {
     try {
         const solicitud = await obtenerSolicitudPorId(req.params.id);
         if (!solicitud) {
             throw new NotFoundError('Solicitud no encontrada');
         }
-        res.json({ ok: true, data: solicitud });
+        res.json({ ok: true, source: 'mongo', data: solicitud });
     } catch (error) {
         next(error);
     }
 };
 
+// ============================================
+// GET /api/solicitudes/stats
+// ============================================
 export const getStats = async (req, res, next) => {
     try {
         const resultado = await obtenerEstadisticas();

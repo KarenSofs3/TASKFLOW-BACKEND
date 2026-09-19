@@ -11,12 +11,10 @@ export const crearSolicitud = async (data) => {
         estado: 'PENDIENTE',
     });
 
-    // Enviar a la cola
-    await encolarSolicitud(solicitud._id);
-    solicitud.estado = 'EN COLA';
+    const encolada = await encolarSolicitud(solicitud._id);
+    solicitud.estado = encolada ? 'EN COLA' : 'PENDIENTE';
     await solicitud.save();
 
-    // Invalidar caché
     await invalidarCache(CACHE_KEY_LISTADO);
     await invalidarCache(CACHE_KEY_STATS);
 

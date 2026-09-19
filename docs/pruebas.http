@@ -1,0 +1,60 @@
+### ============================================
+### TASKFLOW — Pruebas end-to-end
+### ============================================
+
+### 1. Health check
+GET http://localhost:3000/health
+
+### 2. Monitor (contrato frontend)
+GET http://localhost:3000/api/monitor
+
+### 3. Monitor (alias)
+GET http://localhost:3000/api/monitor/estado
+
+### 4. Registrar solicitud (normal)
+POST http://localhost:3000/api/solicitudes
+Content-Type: application/json
+
+{
+  "titulo": "PruebaRegistro",
+  "descripcion": "VerificarAlmacenamiento",
+  "categoria": "Información",
+  "prioridad": "Media"
+}
+
+### 5. Listar solicitudes
+GET http://localhost:3000/api/solicitudes
+
+### 6. Stats
+GET http://localhost:3000/api/solicitudes/stats
+
+### 7. Consultar por ID
+GET http://localhost:3000/api/solicitudes/REEMPLAZAR_ID
+
+### 8. Validación fallida (400)
+POST http://localhost:3000/api/solicitudes
+Content-Type: application/json
+
+{
+  "titulo": "ab",
+  "descripcion": "x",
+  "categoria": "Fake",
+  "prioridad": "Alta"
+}
+
+### 9. ID inválido (400)
+GET http://localhost:3000/api/solicitudes/abc
+
+### 10. ID válido inexistente (404)
+GET http://localhost:3000/api/solicitudes/000000000000000000000000
+
+### 11. Solicitud con error controlado
+POST http://localhost:3000/api/solicitudes
+Content-Type: application/json
+
+{
+  "titulo": "PruebaErrorControlado",
+  "descripcion": "EstaDebeFallar",
+  "categoria": "Soporte",
+  "prioridad": "Alta"
+}
