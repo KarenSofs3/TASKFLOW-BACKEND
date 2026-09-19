@@ -22,6 +22,7 @@ export const postSolicitud = async (req, res, next) => {
 
         res.status(201).json({ ok: true, data: solicitud });
     } catch (error) {
+        console.log(error) 
         next(error);
     }
 };
