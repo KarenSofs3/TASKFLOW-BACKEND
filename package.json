@@ -28,8 +28,6 @@
     "express": "^5.2.1",
     "ioredis": "^6.0.0",
     "mongoose": "^9.10.1",
-    "node": "^26.8.2",
-    "redis": "^6.2.1",
     "socket.io": "^4.8.3"
   },
   "devDependencies": {
