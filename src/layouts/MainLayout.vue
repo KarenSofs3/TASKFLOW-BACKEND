@@ -157,15 +157,6 @@ const navigateTo = (path) => {
         </div>
 
         <div class="flex items-center gap-3">
-          <!-- Aviso si se están usando datos de prueba -->
-          <span
-            v-if="store.isUsingFallbackData"
-            class="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200"
-            title="Mostrando datos mock mientras el backend en Express se activa"
-          >
-            Modo UI Demo
-          </span>
-
           <button
             @click="router.push('/solicitudes/nueva')"
             class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-semibold rounded-lg shadow-sm transition-all shadow-indigo-600/30 active:scale-95"
@@ -175,6 +166,14 @@ const navigateTo = (path) => {
           </button>
         </div>
       </header>
+
+      <!-- BANNER: datos de demostración (backend no disponible) -->
+      <div
+        v-if="store.isUsingFallbackData"
+        class="w-full bg-amber-500 text-amber-950 text-xs sm:text-sm font-semibold text-center py-2 px-4 flex items-center justify-center gap-2"
+      >
+        <span>⚠️ Sin conexión con el backend — estás viendo datos de demostración (no reales)</span>
+      </div>
 
       <!-- PAGE CONTENT -->
       <main class="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">

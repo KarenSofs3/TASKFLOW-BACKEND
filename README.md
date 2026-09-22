@@ -97,11 +97,13 @@ src/
 
 ### Pasos
 
-1. Clonar el repositorio y acceder a la carpeta:
+1. Clonar este repositorio (frontend) y acceder a la carpeta:
 ```bash
-git clone https://github.com/KarenSofs3/TASKFLOW-BACKEND.git
-cd TASKFLOW-BACKEND/frontend
+git clone <URL-DE-TU-REPO-FRONTEND>
+cd <carpeta-del-repo>
 ```
+> Reemplaza `<URL-DE-TU-REPO-FRONTEND>` por la URL real de este repositorio —
+> antes apuntaba por error al repo del backend.
 
 2. Instalar dependencias:
 ```bash
@@ -131,6 +133,11 @@ docker run -d -p 5173:80 --name taskflow-frontend taskflow-frontend
 ```
 
 ### Opción B: Todos los 5 servicios con Docker Compose (Recomendado)
+> Esta opción requiere un `docker-compose.yml` único en la raíz del proyecto que
+> incluya frontend, backend, worker, MongoDB y Redis. Mientras frontend y backend
+> vivan en repos/ramas separados con su propio compose, usa la Opción A para
+> probar el frontend de forma aislada.
+
 Desde la raíz del proyecto `TASKFLOW/`:
 ```bash
 docker compose up --build -d
@@ -142,7 +149,7 @@ Servicios desplegados:
 | **frontend** | `taskflow-frontend` | `5173` | Cliente Web Vue 3 + Nginx |
 | **backend** | `taskflow-backend` | `3000` | API REST Express + Socket.IO |
 | **worker** | `taskflow-worker` | — | Procesador asíncrono Node.js |
-| **mongoserver** | `taskflow-mongo` | `27017` | Base de datos persistente |
+| **mongoserver** | `taskflow-mongo` | `27018` (interno `27017`) | Base de datos persistente |
 | **redisserver** | `taskflow-redis` | `6379` | Caché en memoria y cola LPUSH/BRPOP |
 
 ---
